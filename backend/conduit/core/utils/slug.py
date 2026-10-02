@@ -12,8 +12,10 @@ def make_slug_from_title(title: str) -> str:
         "hello-world-123456"
     """
     slug = slugify(text=title, max_length=32, lowercase=True)
-    unique_code = token_urlsafe(6)
-    return f"{slug}-{unique_code.lower()}"
+    unique_code = token_urlsafe(6).lower()
+    if not slug:
+        return unique_code
+    return f"{slug}-{unique_code}"
 
 
 def make_slug_from_title_and_code(title: str, code: str) -> str:

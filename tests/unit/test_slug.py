@@ -1,5 +1,6 @@
 from conduit.core.utils.slug import (
     get_slug_unique_part,
+    make_slug_from_title,
     make_slug_from_title_and_code,
 )
 
@@ -26,3 +27,9 @@ def test_unique_part_is_the_last_segment():
 
 def test_title_without_letters_does_not_start_with_a_dash():
     assert make_slug_from_title_and_code("!!!!!", "abc123") == "abc123"
+
+def test_title_without_letters_does_not_start_with_a_dash_for_title_slug():
+    slug = make_slug_from_title("!!!!!")
+    assert not slug.startswith("-")
+    assert len(slug) > 0
+
